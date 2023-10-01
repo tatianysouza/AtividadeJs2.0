@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript - Projeto</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="box">
+          <h2 class="titulo-principal">Questões JavaScript</h2>
+        </div>
+    </header>
+    <main>
+        <section class="box">
+          <h2 class="titulos">Exercício</h2>
+    
+        <form id="form">
+          <div class="">
+          <label style="font-weight: bold">Questão 2: Lista de tarefas</label>
+          </div>
+
+          <div class="grupo">
+            <label>Tarefa:</label>
+            <textarea id="tarefaText" class="textarea-medio"></textarea>
+          </div>
+        </form>
+
+        <div id="resultado"></div>
+        <div id="result"></div>
+        <button class="bot" onclick="location.href='index.html'">Voltar</button>
+
+        <form class="form">
+            <h2>Lista</h2>
+            <ul id="tarefaList"></ul>
+        </form>
+        
+        </section>
+    </main>
+
+    <script>
+        const tarefaText = document.getElementById('tarefaText');
+        const tarefaList = document.getElementById('tarefaList');
+
+        tarefaText.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                adicionarTarefa(tarefaText.value);
+                tarefaText.value = '';
+            }
+        });
+
+        function adicionarTarefa(tarefaText) {
+            const lista = document.createElement('li');
+            lista.textContent = tarefaText;
+
+            const remover = document.createElement('span');
+            remover.classList.add('remove-button');
+            remover.textContent = 'x';
+            remover.addEventListener('click', function () {
+                lista.remove();
+            });
+
+            lista.appendChild(remover);
+            tarefaList.appendChild(lista);
+        }
+    </script>
+</body>
+</html>
+

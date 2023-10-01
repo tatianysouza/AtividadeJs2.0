@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript - Projeto</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<body>
+    <header>
+        <div class="box">
+          <h2 class="titulo-principal">Questões JavaScript</h2>
+        </div>
+    </header>
+    <main>
+        <section class="box">
+          <h2 class="titulos">Exercício</h2>
+    
+        <form id="form">
+          <div class="">
+          <label style="font-weight: bold">Questão 1: Maior e menor?</label>
+          </div>
+
+          <div class="grupo">
+            <label>Números:</label>
+            <input id="numeros" class="input-medio" placeholder="Digite os números"><br>
+            <label>Separador:</label>
+            <input id="separador" class="input-medio" placeholder="Digite o separador"><br>
+          </div>
+          <button id="achar" class="botao">Achar</button>
+        </form>
+        <div id="resultado"></div>
+        <div id="result"></div>
+        <button class="bot" onclick="location.href='index.html'">Voltar</button>
+        </section>
+    </main>
+
+<script>
+const elemento = document.querySelector("#achar");
+elemento.addEventListener("click", () => {
+    const numerosInput = document.getElementById("numeros").value;
+    const separadorInput = document.getElementById("separador").value;
+    const arraynum = numerosInput.split(separadorInput);
+    const min = Math.min(...arraynum);
+    const max = Math.max(...arraynum);
+    document.getElementById("resultado").innerHTML = "Resultado min: " + min;
+    document.getElementById("result").innerHTML = "Resultado max: " + max;
+    event.preventDefault();
+    form.reset();
+});
+
+</script>
+</body>
+</head>
+
+</html>
