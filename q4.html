@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript - Projeto</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="box">
+          <h2 class="titulo-principal">Questões JavaScript</h2>
+        </div>
+    </header>
+    <main>
+        <section class="box">
+          <h2 class="titulos">Exercício</h2>
+    
+        <form id="form">
+          <div class="">
+          <label style="font-weight: bold">Questão 4: Lista de salários</label>
+          </div>
+
+          <div class="grupo">
+            <label>Nome:</label>
+            <input id="name" class="input-medio" placeholder="Digite o nome">
+            <label>Salário:</label>
+            <input id="salary" class="input-medio" placeholder="Digite o valor do salário">
+            <button id="addsalario" class="botao">Adicionar</button>
+          </div> 
+          <div id="resultado"></div>          
+        </form>
+        <button class="bot" onclick="location.href='index.html'">Voltar</button>
+
+        <form class="form">
+            <h2>Lista</h2>
+            <ul id="funcionariosList"></ul>
+        </form>
+        </section>
+    </main>
+
+<script>
+const pessoas = [];
+
+document.getElementById('addsalario').addEventListener('click', adicionarFuncionario);
+
+function adicionarFuncionario(event) {
+    event.preventDefault();
+    const nome = document.getElementById("name").value;
+    const salario = parseFloat(document.getElementById("salary").value);
+    const novaPessoa = {
+        "nome": nome,
+        "salario": salario,
+    };
+    pessoas.push(novaPessoa);
+    document.getElementById("name").value = "";
+    document.getElementById("salary").value = "";
+    Funcionarios();
+}
+
+function Funcionarios() {
+    const listaFuncionarios = document.getElementById("funcionariosList");
+    listaFuncionarios.innerHTML = "";
+
+    let maiorSalario = 0;
+    let pessoaMaiorSalario = null;
+
+    for (let i = 0; i < pessoas.length; i++) {
+        const lista = document.createElement("li");
+        lista.textContent = "Nome: " + pessoas[i].nome + " // Salário: " + pessoas[i].salario;
+        listaFuncionarios.appendChild(lista);
+
+        if (pessoas[i].salario > maiorSalario) {
+            maiorSalario = pessoas[i].salario;
+            pessoaMaiorSalario = pessoas[i];
+        }
+    }
+
+    const totalSalarios = pessoas.reduce((cont, pessoa) => {
+        return cont + pessoa.salario;
+    }, 0);
+
+    let resultado = "Total dos salários: " + totalSalarios +
+        "<br>Número de salários pagos: " + pessoas.length + "<br>Maior salário pago: " +pessoaMaiorSalario.nome +" R$"+ pessoaMaiorSalario.salario;
+
+    document.getElementById("resultado").innerHTML = resultado;
+}
+</script>
+</body>
+</html>
+
